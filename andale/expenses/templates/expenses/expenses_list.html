@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Listado de gastos {% endblock %}
+
+{% block content %}
+
+{% if query or date_query_start%}
+
+<p><a href="{% url 'expenses:expenses_list' %}" id="search-btn" class="back-link"><i
+            class="fas fa-chevron-left"></i>Volver
+        a listado</a></p>
+{% if query %}
+
+<div id="list-title">
+    Filtrando por: "{{query}}"
+</div>
+{% endif %}
+
+{% if date_query_start %}
+<div id="list-title">
+    Filtrando entre Fechas: "{{date_query_start}}" y "{{date_query_end}}"
+</div>
+{% endif %}
+
+{% if expenses %}
+
+<div class="title-movement-card">
+    <div id="card-row-1">
+        <h2 id="title-client-tag">Fecha agregado:</h2>
+        <h2 id="title-client-tag">Nombre:</h2>
+        <h2 id="title-client-tag">Tipo:</h2>
+        <h2 id="title-client-tag">Monto:</h2>
+    </div>
+</div>
+
+{% endif %}
+{% for expense in expenses %}
+
+<a href="{{ expense.get_absolute_url }}">
+    <div class="movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ expense.fecha |date }}</h2>
+            <h2 id="client-tag">{{ expense.nombre}}</h2>
+            <h2 id="client-tag">{{ expense.tipo | capfirst}}</h2>
+            <h2 id="total-tag">${{ expense.monto | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</a>
+{% empty %}
+<div id="list-title">
+    No hay resultados para la búsqueda
+</div>
+{% endfor %}
+{% else %}
+<div id="top-forms">
+    <form action="." method="get" id="search-form" class="date-form">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-calendar-alt"></i> Buscar por Fecha inicio / Fecha final:
+        </div>
+        {{date_form.date_query_start }}
+        {{date_form.date_query_end }}
+        <input type="submit" value="Buscar" id="search-btn">
+    </form>
+    <form action="." method="get" id="search-form">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-search"></i> Buscar por nombre:
+        </div>
+        {{search_form.query}}
+        <input type="submit" value="Buscar" id="search-btn">
+    </form>
+</div>
+<div id="list-title">
+    Listado de gastos
+</div>
+{% if expenses %}
+<div class="title-movement-card">
+    <div id="card-row-1">
+        <h2 id="title-client-tag">Fecha agregado:</h2>
+        <h2 id="title-client-tag">Nombre:</h2>
+        <h2 id="title-client-tag">Tipo:</h2>
+        <h2 id="title-client-tag">Monto:</h2>
+    </div>
+</div>
+{% endif %}
+{% for expense in expenses %}
+
+<a href="{{ expense.get_absolute_url }}">
+    <div class="movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ expense.fecha |date }}</h2>
+            <h2 id="client-tag">{{ expense.nombre}}</h2>
+            <h2 id="client-tag">{{ expense.tipo | capfirst}}</h2>
+            <h2 id="total-tag">${{ expense.monto | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

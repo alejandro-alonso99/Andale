@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Detalle de producto {% endblock %}
+
+{% block content %}
+
+<p><a href="{% url 'products:products_list' %}" id="search-btn" class="back-link"><i class="fas fa-chevron-left"></i>
+        Volver
+        a listado</a></p>
+<div id="top-forms">
+    <form action="." method="get" id="search-form" class="date-form"
+        onsubmit="confirm('Confirme para cambiar el precio de venta')">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-calendar-alt"></i>Aumentar precio de venta:
+        </div>
+        {{change_price_form.food_amount }}
+        <input type="submit" value="Modificar" id="search-btn">
+    </form>
+    <form method="post" onsubmit="confirm('Confirme para eliminar el producto')" id="search-form">
+        {% csrf_token %}
+        <div id="delete-label">
+            <i class="fa-solid fa-circle-xmark"></i> Eliminar:
+        </div>
+        {{ detroy_object_form.field.as_hidden }}
+        <input type="submit" id="delete-btn" value="Eliminar Producto">
+    </form>
+</div>
+<h1 id="list-title">Viendo producto: {{product}}</h1>
+
+<div id="detail-wrapper">
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Fecha agregado:</h2>
+            <h2 id="title-client-tag">Código:</h2>
+            <h2 id="title-client-tag">Categoría:</h2>
+            <h2 id="title-client-tag">Nombre:</h2>
+            <h2 id="title-client-tag">Precio venta:</h2>
+        </div>
+    </div>
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ product.fecha |date }}</h2>
+            <h2 id="client-tag">{{ product.codigo}}</h2>
+            <h2 id="client-tag">{{ product.categoria | capfirst}}</h2>
+            <h2 id="client-tag">{{ product.nombre | capfirst }}</h2>
+            <h2 id="total-tag">${{ product.precio | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}

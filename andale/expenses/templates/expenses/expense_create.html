@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de gastos{% endblock %}
+
+{% block content %}
+
+<div id="list-title">
+    Crear gasto
+</div>
+<form action="" method="post">
+    {% csrf_token %}
+    <div id="form-wrapper">
+        <div id="wrapper">
+            <div class="create-section">
+                <div class="create-element">
+                    <h3><i class="fa-solid fa-user"></i>Nombre:</h3>
+                    <h2 id="title-client-tag">{{expense_form.nombre}}</h2>
+                </div>
+                <div class="create-element">
+                    <h3><i class="fa-solid fa-plus"></i>Monto</h3>
+                    <h2 id="title-client-tag">{{expense_form.monto}}</h2>
+                </div>
+            </div>
+            <div class="create-section">
+                <div class="create-element">
+                    <h3><i class="fa-solid fa-file"></i>Categoría
+                    </h3>
+                    <h2 id="title-client-tag">{{expense_form.tipo}}</h2>
+                </div>
+                {{expense_form.errors}}
+            </div>
+        </div>
+        <input type="submit" value="Crear" id="create-btn">
+    </div>
+</form>
+{% endblock %}

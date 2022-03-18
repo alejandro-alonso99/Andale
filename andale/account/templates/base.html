@@ -1,0 +1,61 @@
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% language 'es' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/026a228444.js" crossorigin="anonymous"></script>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
+    <title>{% block title %} {%endblock%}</title>
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <h1 id="nav-title">ÁNDALE</h1>
+        <a href="#about">Mesas</a>
+        <hr>
+        <a href="{% url 'delivery:create_delivery' %}">Delivery</a>
+        <hr>
+        <button class="dropdown-btn">Gastos
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="{% url 'expenses:expenses_list' %}">Listado</a>
+            <a href="{% url 'expenses:expense_create' %}">Crear</a>
+        </div>
+        <hr>
+        <a href="#contact">Ventas</a>
+        <hr>
+        <a href="#contact">Resumenes</a>
+        <hr>
+        <button class="dropdown-btn">Productos
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="{% url 'products:products_list' %}">Listado</a>
+            <a href="{% url 'products:product_create' %}">Crear</a>
+        </div>
+        <hr>
+    </div>
+
+    <main>
+        <section id="main-dashboard">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </main>
+    <script src="{% static '/js/main.js' %}"></script>
+</body>
+
+</html>
+{% endlanguage %}
