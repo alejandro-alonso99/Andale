@@ -15,19 +15,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name='Sale',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('fecha', models.DateTimeField(auto_now_add=True)),
-                ('codigo', models.PositiveIntegerField()),
-                ('nombre', models.CharField(max_length=50)),
-                ('categoria', models.CharField(choices=[('comida', 'Comida'), ('bebida', 'Bebida')], default='comida', max_length=6)),
-                ('precio', models.FloatField()),
-                ('slug', models.SlugField(max_length=250, unique_for_date='fecha')),
+                ('origen', models.CharField(choices=[('mesa', 'Mesa'), ('delivery', 'Delivery')], default='delivery', max_length=50)),
+                ('pagado_con', models.CharField(choices=[('efectivo', 'Efectivo'), ('tarjeta', 'Tarjeta')], default='efectivo', max_length=8)),
+                ('total', models.FloatField()),
+                ('slug', models.SlugField(max_length=250, unique_for_date=models.DateTimeField(auto_now_add=True))),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'ordering': ('codigo',),
-            },
         ),
     ]

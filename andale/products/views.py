@@ -46,7 +46,6 @@ def products_list(request):
                 product.save()
 
             return redirect('products:products_list')
-        
 
     return render(request,'products/products_list.html',{
                                                         'products':products,

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Ventas {% endblock %}
+
+{% block content %}
+
+<div class="title-movement-card">
+    <div id="card-row-1">
+        <h2 id="title-client-tag">Fecha agregado:</h2>
+        <h2 id="title-client-tag">Código:</h2>
+        <h2 id="title-client-tag">Categoría:</h2>
+        <h2 id="title-client-tag">Nombre:</h2>
+        <h2 id="title-client-tag">Precio venta:</h2>
+    </div>
+</div>
+{% endif %}
+{% for product in products %}
+
+<a href="{{ product.get_absolute_url }}">
+    <div class="movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ product.fecha |date }}</h2>
+            <h2 id="client-tag">{{ product.codigo}}</h2>
+            <h2 id="client-tag">{{ product.categoria | capfirst}}</h2>
+            <h2 id="client-tag">{{ product.nombre | capfirst }}</h2>
+            <h2 id="total-tag">${{ product.precio | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</a>
+{% endblock %}

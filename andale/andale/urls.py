@@ -7,4 +7,5 @@ urlpatterns = [
     path('products/',include('products.urls', namespace='products')),
     path('expenses/',include('expenses.urls', namespace='expenses')),
     path('delivery/',include('delivery.urls', namespace='delivery')),
+    path('sales/',include('sales.urls', namespace='sales')),
 ]

@@ -2,11 +2,74 @@
 
 {% load humanize %}
 
+{% load to_and %}
+
 {% block title %}Delivery{% endblock %}
 
 {% block content %}
+<div id="top-forms">
+    <form action="." method="post" id="search-form" class="date-form">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-calendar-alt"></i> Agregar producto:
+        </div>
+        {{add_product_form.codigo }}
+        {{add_product_form.cantidad }}
+        <input type="submit" value="Agregar" id="search-btn">
+    </form>
+</div>
+<div id="list-title">
+    Delivery
+</div>
+{% if delivery_dict %}
+<div id="detail-wrapper">
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Producto:</h2>
+            <h2 id="title-client-tag">Cantidad:</h2>
+            <h2 id="title-client-tag">Subtotal:</h2>
+            <h2 id="title-client-tag">Quitar:</h2>
+        </div>
+    </div>
+    {% for product,detail in delivery_dict.items %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ product | capfirst | to_and}}</h2>
+            <h2 id="client-tag">{{ detail.cantidad }}</h2>
+            <h2 id="total-tag">${{ detail.subtotal | floatformat:2 | intcomma}}</h2>
+            <h2 id="client-tag">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ remove_product_form.field.as_hidden }}
+                    <input type="hidden" name="product_name" value={{product}}>
+                    <input type="submit" id="list-delete-btn" value="Quitar">
+                </form>
+            </h2>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="title-movement-card">
+        <div id="total-card-row">
+            <h2 id="client-tag">Total: </h2>
+            <h2 id="client-tag">- - -</h2>
+            <h2 id="total-tag">${{ delivery_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="client-tag">- - -</h2>
+        </div>
+    </div>
+</div>
+<div id="top-forms">
+    <form action="" method="post" id="search-form" class="date-form">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-calendar-alt"></i> Pagado con:
+        </div>
+        {{ close_sale_form.payment }}
+        <input type="submit" id="delete-btn" value="Cerrar venta">
+    </form>
+</div>
 
-
-
+{% else %}
+<h3 id="empty-title">Agregue productos con el formulario</h3>
+{% endif %}
 
 {% endblock %}
