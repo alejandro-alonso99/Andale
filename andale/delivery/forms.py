@@ -1,5 +1,3 @@
-from dataclasses import field
-from secrets import choice
 from django import forms
 
 class AddProductForm(forms.Form):

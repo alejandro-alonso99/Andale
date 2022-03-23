@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'expenses.apps.ExpensesConfig',
     'sales.apps.SalesConfig',
     'delivery.apps.DeliveryConfig',
+    'tables.apps.TablesConfig',
+    'summary.apps.SummaryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

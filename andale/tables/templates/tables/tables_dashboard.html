@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% load to_and %}
+
+{% load humanize %}
+
+{% block title %}Mesas {% endblock %}
+
+{% block content %}
+
+<div id="top-forms">
+    <form action="." method="post" id="search-form" class="date-form">
+        {% csrf_token %}
+        <div id="search-label">
+            <i class="fas fa-calendar-alt"></i> Abrir mesa:
+        </div>
+        {{add_table_form.numero }}
+        <input type="submit" value="Abrir" id="search-btn">
+    </form>
+</div>
+<div id="list-title">
+    Mesas abiertas:
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
+        {{ message }}
+        </li>
+        {% endfor %}
+</ul>
+{% endif %}
+
+{% for number,products in tables_dict.items %}
+
+<div id="detail-wrapper">
+    <div id="top-forms">
+        <form action="." method="post" id="search-form" class="sm">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Agregar producto:
+            </div>
+            {{add_product_form.codigo }}
+            {{add_product_form.cantidad }}
+            <input type="hidden" name="table_number" value={{number}}>
+            <input type="submit" value="Agregar" id="search-btn">
+        </form>
+        <form action="." method="post" id="search-form" class="sm-left"
+            onsubmit="confirm('Si elimina la mesa la venta no se registrará.')">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Quitar mesa:
+            </div>
+            {{ delete_table_form.delete_field.as_hidden }}
+            <input type="hidden" name="table_number" value={{number}}>
+            <input type="submit" value="Eliminar" id="search-btn">
+        </form>
+    </div>
+    <div id="list-title" class="small red">
+        Mesa número: {{number}}
+    </div>
+
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="title-client-tag">Producto:</h2>
+            <h2 id="title-client-tag">Cantidad:</h2>
+            <h2 id="title-client-tag">Subtotal:</h2>
+            <h2 id="title-client-tag">Quitar:</h2>
+        </div>
+    </div>
+
+    {% for product,detail in products.items %}
+    {% for name,stuff in detail.items %}
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{ name | capfirst | to_and}}</h2>
+            <h2 id="client-tag">{{ stuff.cantidad}}</h2>
+            <h2 id="total-tag">${{ stuff.subtotal | floatformat:2 | intcomma}}</h2>
+            <h2 id="client-tag">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ remove_product_form.field.as_hidden }}
+                    <input type="hidden" name="table_number" value={{number}}>
+                    <input type="hidden" name="product_name" value={{name}}>
+                    <input type="submit" id="list-delete-btn" value="Quitar">
+                </form>
+            </h2>
+        </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    <div class="title-movement-card">
+        <div id="total-card-row">
+            <h2 id="client-tag">Total: </h2>
+            <h2 id="client-tag">- - -</h2>
+            <h2 id="total-tag">${{ products.total | floatformat:2 | intcomma}}</h2>
+            <h2 id="client-tag">- - -</h2>
+        </div>
+    </div>
+    <div id="top-forms">
+        <form action="" method="post" id="search-form" class="sm" onsubmit="confirm('Confirme para cerrar la venta')">
+            {% csrf_token %}
+            <div id="search-label">
+                <i class="fas fa-calendar-alt"></i> Pagado con:
+            </div>
+            {{ close_sale_form.payment }}
+            <input type="hidden" name="table_number" value={{number}}>
+            <input type="submit" id="delete-btn" value="Cerrar venta">
+        </form>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

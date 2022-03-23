@@ -22,11 +22,13 @@
 
     <div class="sidenav">
         <h1 id="nav-title">ÁNDALE</h1>
-        <a href="#about">Mesas</a>
+        <a href="{% url 'tables:tables_dashboard' %}">Mesas</a>
         <hr>
-        <a href="{% url 'delivery:create_delivery' %}">Delivery</a>
+        <a href="{% url 'delivery:create_delivery' %}"
+            class="{% if request.resolver_match.view_name == 'delivery:create_delivery' %} current {% endif %}">Delivery</a>
         <hr>
-        <button class="dropdown-btn">Gastos
+        <button
+            class="dropdown-btn {% if request.resolver_match.view_name == 'expenses:expenses_list' or request.resolver_match.view_name == 'expenses:expense_create'%} current {% endif %}">Gastos
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
@@ -34,11 +36,14 @@
             <a href="{% url 'expenses:expense_create' %}">Crear</a>
         </div>
         <hr>
-        <a href="{% url 'sales:sales_list' %}">Ventas</a>
+        <a href="{% url 'sales:sales_list' %}"
+            class="{% if request.resolver_match.view_name == 'sales:sales_list' %} current {% endif %}">Ventas</a>
         <hr>
-        <a href="#contact">Resumenes</a>
+        <a href="{% url 'summary:summary_dashboard' %}"
+            class="{% if request.resolver_match.view_name == 'summary:summary_dashboard' %} current {% endif %}">Resumenes</a>
         <hr>
-        <button class="dropdown-btn">Productos
+        <button
+            class="dropdown-btn {% if request.resolver_match.view_name == 'products:products_list' or request.resolver_match.view_name == 'products:product_create'%} current {% endif %}">Productos
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">

@@ -4,6 +4,8 @@ from products.models import Product
 from django.utils.text import slugify
 from sales.models import Sale
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 @login_required
 def create_delivery(request):
@@ -26,8 +28,13 @@ def create_delivery(request):
         pass
 
     def add_product(codigo,cantidad):
-        product = products.get(codigo=codigo)
-        product_name = slugify(str(product))    
+
+        if int(codigo) in list(products.values_list('codigo', flat=True)):
+            product = products.get(codigo=codigo)
+            product_name = slugify(str(product))
+        else: 
+            messages.error(request, 'No hay un producto con ese código.')
+            return redirect('delivery:create_delivery')
 
         if product_name not in request.session[user]['delivery']['products']:
             product_price = product.precio    
@@ -104,6 +111,7 @@ def create_delivery(request):
         close_sale(payed_with)
 
         return redirect('sales:sales_list')
+
 
     return render(request,'delivery/create_delivery.html',{
                                                         'add_product_form':add_product_form,

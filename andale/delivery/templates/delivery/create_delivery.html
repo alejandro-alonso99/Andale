@@ -21,6 +21,16 @@
 <div id="list-title">
     Delivery
 </div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
+        {{ message }}
+        </li>
+        {% endfor %}
+</ul>
+{% endif %}
 {% if delivery_dict %}
 <div id="detail-wrapper">
     <div class="title-movement-card">
@@ -58,7 +68,8 @@
     </div>
 </div>
 <div id="top-forms">
-    <form action="" method="post" id="search-form" class="date-form">
+    <form action="" method="post" id="search-form" class="date-form"
+        onsubmit="confirm('Confirme para cerrar la venta')">
         {% csrf_token %}
         <div id="search-label">
             <i class="fas fa-calendar-alt"></i> Pagado con:

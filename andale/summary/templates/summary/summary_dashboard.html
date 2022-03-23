@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Resumenes{% endblock %}
+
+{% block content %}
+<div id="detail-wrapper">
+
+    <div id="list-title" class="small">
+        Resumen diario
+    </div>
+
+    <div class="title-movement-card">
+        <div id="total-card-row">
+            <h2 id="title-client-tag">Ventas totales:</h2>
+            <h2 id="title-client-tag">Ventas efectivo: </h2>
+            <h2 id="title-client-tag">Ventas tarjeta:</h2>
+            <h2 id="title-client-tag">Total:</h2>
+        </div>
+    </div>
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{today_sales_count }}</h2>
+            <h2 id="total-tag">${{total_cash_today | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ total_card_today | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ total_today | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</div>
+<div id="detail-wrapper">
+    <div id="list-title" class="small">
+        Resumen mensual
+    </div>
+
+    <div class="title-movement-card">
+        <div id="total-card-row">
+            <h2 id="title-client-tag">Ventas totales:</h2>
+            <h2 id="title-client-tag">Ventas efectivo: </h2>
+            <h2 id="title-client-tag">Ventas tarjeta:</h2>
+            <h2 id="title-client-tag">Total:</h2>
+        </div>
+    </div>
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="client-tag"> {{month_sales_count }}</h2>
+            <h2 id="total-tag">${{month_cash_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ month_card_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ month_sales_total | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+    <div class="title-movement-card">
+        <div id="total-card-row">
+            <h2 id="title-client-tag">Total gastos:</h2>
+            <h2 id="title-client-tag">Servicios: </h2>
+            <h2 id="title-client-tag">Insumos:</h2>
+            <h2 id="title-client-tag">Ganancia mensual:</h2>
+        </div>
+    </div>
+    <div class="title-movement-card">
+        <div id="card-row-1">
+            <h2 id="total-tag"> ${{month_expenses_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{month_services_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ month_supplies_total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag">${{ month_earned | floatformat:2 | intcomma}}</h2>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
