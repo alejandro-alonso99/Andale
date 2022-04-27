@@ -1,7 +1,7 @@
-:root{
+:root {
     --main-color: #111;
     --accent-color: #fff;
-    --red-accent-color:#f50004;
+    --red-accent-color: #f50004;
 }
 
 input::-webkit-outer-spin-button,
@@ -19,12 +19,12 @@ a {
     color: unset;
 }
 
-a:visited{
+a:visited {
     text-decoration: none;
     color: unset;
 }
 
-body{
+body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
@@ -42,8 +42,9 @@ body{
     overflow-x: hidden;
     padding-top: 20px;
 }
-  
-.sidenav a, .dropdown-btn {
+
+.sidenav a,
+.dropdown-btn {
     padding: 10px 15px;
     text-decoration: none;
     font-size: 17px;
@@ -51,44 +52,45 @@ body{
     display: block;
     border: none;
     background: none;
-    width:100%;
+    width: 100%;
     text-align: left;
     cursor: pointer;
     outline: none;
 }
 
-.current{
+.current {
     color: var(--red-accent-color) !important;
     font-weight: 400 !important;
 }
 
-#nav-title{
+#nav-title {
     font-size: 23px;
     color: var(--accent-color);
     width: fit-content;
     margin: 25px auto;
 }
 
-.sidenav hr{
+.sidenav hr {
     margin: 10px 15px;
 }
 
-.sidenav a:hover, .dropdown-btn:hover {
+.sidenav a:hover,
+.dropdown-btn:hover {
     color: #f1f1f1;
 }
-   
+
 .active {
     background-color: #111;
     color: white;
 }
-  
+
 .dropdown-container {
     display: none;
     background-color: #262626;
     padding-left: 8px;
 }
-  
-  
+
+
 .fa-caret-down {
     float: right;
     padding-right: 8px;
@@ -104,14 +106,14 @@ main {
     height: 100vh;
 }
 
-#main-dashboard{
+#main-dashboard {
     width: 95%;
     height: fit-content;
 }
 
 /*------forms-----*/
 
-#form-wrapper{
+#form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -131,7 +133,7 @@ main {
     padding: 20px 0;
 }
 
-#detail-wrapper{
+#detail-wrapper {
     width: 100%;
     height: fit-content;
     margin: 20px auto;
@@ -139,25 +141,25 @@ main {
     box-shadow: 1px 1px 20px gray;
     border-radius: 5px;
     padding: 20px 0;
-  
+
 }
 
-.create-section{
+.create-section {
     padding: 20px;
     margin: 0 30px;
 }
 
-#login-title{
+#login-title {
     width: 100%;
     text-align: center;
     font-weight: bolder;
 }
 
-.create-element{
+.create-element {
     padding: 5px;
 }
 
-#create-btn{
+#create-btn {
     width: fit-content;
     font-size: 15px;
     border: none !important;
@@ -170,13 +172,13 @@ main {
     outline: none !important;
 }
 
-#create-btn:hover{
+#create-btn:hover {
     cursor: pointer;
     background-color: rgb(177, 177, 177);
     color: var(--main-color);
 }
 
-#wrapper input{
+#wrapper input {
     width: 200px;
     outline: none;
     border: 1px solid #c4c4c4;
@@ -185,16 +187,16 @@ main {
     text-align: left;
     font-size: 15px;
     border-radius: 3px;
-  }
-  
-#wrapper input:focus{
-    outline:1px solid var(--red-accent-color);
 }
-  
-#wrapper select:focus{
-    outline:1px solid var(--red-accent-color);
+
+#wrapper input:focus {
+    outline: 1px solid var(--red-accent-color);
 }
-  
+
+#wrapper select:focus {
+    outline: 1px solid var(--red-accent-color);
+}
+
 #wrapper select {
     width: 200px;
     outline: none;
@@ -205,23 +207,23 @@ main {
     font-size: 15px;
     border-radius: 3px;
 }
-  
+
 #wrapper input:valid {
     background-color: #fff !important;
-    outline:1px solid var(--red-accent-color);
+    outline: 1px solid var(--red-accent-color);
 }
-  
-#wrapper select:valid{
-    outline:1px solid var(--red-accent-color);
-  
+
+#wrapper select:valid {
+    outline: 1px solid var(--red-accent-color);
+
 }
-  
-#wrapper h3{
+
+#wrapper h3 {
     font-weight: normal;
     font-size: 17px;
 }
-  
-#wrapper i{
+
+#wrapper i {
     color: var(--main-color);
     margin-right: 5px;
     font-size: 15px;
@@ -235,7 +237,7 @@ main {
     text-align: center;
     font-size: 16px;
     margin-bottom: 30px;
-    background-color:  var(--main-color);
+    background-color: var(--main-color);
     color: #fff;
     padding: 10px;
     border: 2px solid var(--main-color);
@@ -251,28 +253,26 @@ main {
     border: none !important;
 }
 
-#empty-title{
+#empty-title {
     width: fit-content;
     margin: 0px auto;
     font-weight: normal;
     font-size: 20px;
 }
 
-#list-title-errors{
+#list-title-errors {
     font-weight: 500;
     text-align: center;
     font-size: 16px;
     margin-bottom: 30px;
-    background-color:  var(--red-accent-color);
+    background-color: var(--red-accent-color);
     color: #fff;
     padding: 10px;
     border: 2px solid var(--red-accent-color);
     border-radius: 5px;
 }
 
-#back-title{
-
-}
+#back-title {}
 
 .title-movement-card {
     padding: 0 30px;
@@ -300,7 +300,7 @@ main {
     padding: 5px 0;
 }
 
-#total-tag{
+#total-tag {
     font-size: 15px;
     font-weight: normal;
     width: 20%;
@@ -308,15 +308,15 @@ main {
     color: var(--red-accent-color);
     padding: 5px 0;
 }
-  
+
 
 .movement-card {
     padding: 0 30px;
     height: fit-content;
     background-color: transparent;
     transition: all 0.5s;
-  }
-  
+}
+
 .movement-card:hover {
     cursor: pointer;
     background-color: #c4c4c4;
@@ -343,7 +343,7 @@ main {
     padding: 7px;
 }
 
-#top-forms{
+#top-forms {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -351,12 +351,12 @@ main {
     margin-top: 5px;
     margin-bottom: 20px;
 }
-  
-#search-label{
+
+#search-label {
     font-size: 15px;
 }
 
-#search-form{
+#search-form {
     width: fit-content;
     margin-top: 20px;
 }
@@ -364,16 +364,16 @@ main {
 .sm {
     margin-left: 30px;
 }
-  
-.sm-left{
+
+.sm-left {
     margin-right: 30px;
 }
 
 #search-form div {
     margin-bottom: 10px;
 }
-  
-#search-btn{
+
+#search-btn {
     width: 100px !important;
     font-size: 15px;
     border: none !important;
@@ -385,14 +385,14 @@ main {
     outline: none !important;
     margin: 0 !important;
 }
-  
-#search-btn:hover{
+
+#search-btn:hover {
     cursor: pointer;
     background-color: rgb(177, 177, 177);
     color: var(--main-color);
 }
-  
-#search-form input{
+
+#search-form input {
     width: 150px;
     font-size: 15px;
     padding: 7px 10px;
@@ -402,7 +402,7 @@ main {
     margin-bottom: 10px;
 }
 
-#search-form select{
+#search-form select {
     width: 150px;
     font-size: 15px;
     padding: 5px 10px;
@@ -411,12 +411,12 @@ main {
     margin-right: 10px;
     margin-bottom: 10px;
 }
-  
-#search-form input:valid{
+
+#search-form input:valid {
     outline: 1px solid var(--red-accent-color);
 }
 
-#search-form select:valid{
+#search-form select:valid {
     outline: 1px solid var(--red-accent-color);
 }
 
@@ -424,7 +424,7 @@ main {
 
 /*----details-----*/
 
-#delete-btn{
+#delete-btn {
     font-size: 15px;
     border: none !important;
     padding: 7px 10px;
@@ -436,7 +436,7 @@ main {
     float: right;
 }
 
-#list-delete-btn{
+#list-delete-btn {
     font-size: 15px;
     border: none !important;
     padding: 7px 10px;
@@ -446,29 +446,39 @@ main {
     transition: all 0.3s;
     outline: none !important;
     width: fit-content;
-    margin: 0 auto;    
+    margin: 0 auto;
 }
 
-#delete-btn:hover{
+#delete-btn:hover {
     cursor: pointer;
     background-color: rgb(177, 177, 177);
     color: var(--main-color);
 }
 
-#list-delete-btn:hover{
+#list-delete-btn:hover {
     cursor: pointer;
     background-color: rgb(177, 177, 177);
     color: var(--main-color);
 }
 
-#delete-label{
+#delete-label {
     font-size: 15px;
 }
 
 /*----details-----*/
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
+@media print {
+    #list-delete-btn {
+        display: none;
+    }
+}

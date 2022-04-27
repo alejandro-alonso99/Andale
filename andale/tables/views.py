@@ -132,6 +132,8 @@ def tables_dashboard(request):
     
     calculate_totals()
 
+    print(tables_dict)
+
     return render(request,'tables/tables_dashboard.html',{
                                                         'add_table_form':add_table_form,
                                                         'add_product_form':add_product_form,

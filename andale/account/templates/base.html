@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/026a228444.js" crossorigin="anonymous"></script>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" media="screen">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
@@ -22,7 +22,8 @@
 
     <div class="sidenav">
         <h1 id="nav-title">ÁNDALE</h1>
-        <a href="{% url 'tables:tables_dashboard' %}">Mesas</a>
+        <a href="{% url 'tables:tables_dashboard' %}"
+            class="{% if request.resolver_match.view_name == 'tables:tables_dashboard' %} current {% endif %}">Mesas</a>
         <hr>
         <a href="{% url 'delivery:create_delivery' %}"
             class="{% if request.resolver_match.view_name == 'delivery:create_delivery' %} current {% endif %}">Delivery</a>

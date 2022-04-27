@@ -4,6 +4,8 @@
 
 {% load humanize %}
 
+{% load static %}
+
 {% block title %}Mesas {% endblock %}
 
 {% block content %}
@@ -94,7 +96,7 @@
         <div id="total-card-row">
             <h2 id="client-tag">Total: </h2>
             <h2 id="client-tag">- - -</h2>
-            <h2 id="total-tag">${{ products.total | floatformat:2 | intcomma}}</h2>
+            <h2 id="total-tag" class="printable-total">${{ products.total | floatformat:2 | intcomma}}</h2>
             <h2 id="client-tag">- - -</h2>
         </div>
     </div>
@@ -107,6 +109,12 @@
             {{ close_sale_form.payment }}
             <input type="hidden" name="table_number" value={{number}}>
             <input type="submit" id="delete-btn" value="Cerrar venta">
+        </form>
+        <form id="search-form" class="sm-left">
+            <div id="search-label">
+                <i class="fa-solid fa-print"></i> Tickar:
+            </div>
+            <a href="{%url 'account:ticket' number %}" id="delete-btn" target="_blank">Tickar</a>
         </form>
     </div>
 </div>

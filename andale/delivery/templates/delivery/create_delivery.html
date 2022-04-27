@@ -77,6 +77,12 @@
         {{ close_sale_form.payment }}
         <input type="submit" id="delete-btn" value="Cerrar venta">
     </form>
+    <form id="search-form" class="sm-left">
+        <div id="search-label">
+            <i class="fa-solid fa-print"></i> Tickar:
+        </div>
+        <a href="{% url 'account:delivery_ticket' %}" id="delete-btn" target="_blank">Tickar</a>
+    </form>
 </div>
 
 {% else %}

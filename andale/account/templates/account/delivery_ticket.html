@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+{% load to_and %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% load static %}
+{% language 'es' %}
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/ticket.css' %}">
+    <title>Ticket</title>
+</head>
+
+<body onload="window.print()">
+    <div class="ticket">
+        <p class="centrado">🌶️ANDALE🌶️</p>
+        <p class="centrado">TICKET DE VENTA {{date | date:"d M Y"}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th class="producto">PRODUCTO</th>
+                    <th class="cantidad">CANT</th>
+                    <th class="precio">$$</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product, detail in delivery_dict.items %}
+                <tr>
+                    <td class="producto">{{ product | capfirst | to_and}}</td>
+                    <td class="cantidad">{{ detail.cantidad}}</td>
+                    <td class="precio">${{ detail.subtotal | floatformat:2 | intcomma}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td>TOTAL: </td>
+                    <td>${{ delivery_total | floatformat:2 | intcomma}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="centrado">¡GRACIAS POR SU COMPRA!<br></p>
+    </div>
+</body>
+
+</html>
+{% endlanguage %}
