@@ -18,3 +18,4 @@ This webapp works for multiple users, so that every separate franchise of the co
 
 ## Create views:
 Create views include forms that let you create objects. In this case this user created a product named Taco de carne.
+![gif](create_product.gif)
