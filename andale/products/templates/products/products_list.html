@@ -51,31 +51,29 @@
 {% endfor %}
 {% else %}
 <div id="top-forms">
-    <form action="." method="get" id="search-form" class="date-form"
-        onsubmit="confirm('Confirme para cambiar todos los precios de venta de comida')">
+    <form action="." method="get" id="search-form" class="date-form" name="food-form">
         {% csrf_token %}
         <div id="search-label">
             <i class="fas fa-calendar-alt"></i> Aumentar precios de comida:
         </div>
         {{change_food_price_form.food_amount }}
-        <input type="submit" value="Modificar" id="search-btn">
+        <input type="button" value="Modificar" id="search-btn" name="food-btn">
     </form>
-    <form action="." method="get" id="search-form" class="date-form"
-        onsubmit="confirm('Confirme para cambiar todos los precios de venta de bebida')">
+    <form action="." method="get" id="search-form" class="date-form" name="drinks-form">
         {% csrf_token %}
         <div id="search-label">
             <i class="fas fa-calendar-alt"></i> Aumentar precios de bebida:
         </div>
         {{change_drinks_price_form.drinks_amount }}
-        <input type="submit" value="Modificar" id="search-btn">
+        <input type="button" value="Modificar" id="search-btn" name="drinks-btn">
     </form>
-    <form action="." method="get" id="search-form">
+    <form action="." method="get" id="search-form" name="search-form">
         {% csrf_token %}
         <div id="search-label">
             <i class="fas fa-search"></i> Buscar por nombre:
         </div>
         {{search_form.query}}
-        <input type="submit" value="Buscar" id="search-btn">
+        <input type="submit" value="Buscar" id="search-btn" name="search-btn">
     </form>
 </div>
 <div id="list-title">
@@ -107,5 +105,30 @@
 </a>
 {% endfor %}
 {% endif %}
+
+<script type="text/javascript">
+
+    var input = document.querySelector("[name = 'food-btn']")
+    input.addEventListener("click", function () {
+        if (confirm('Aumentar precio de venta?')) {
+            form = document.querySelector("[name = 'food-form']")
+            form.submit()
+        } else {
+            return false;
+        }
+    });
+
+    var input2 = document.querySelector("[name = 'drinks-btn']")
+    input2.addEventListener("click", function () {
+        if (confirm('Cambiar precios de bebida?')) {
+            form = document.querySelector("[name = 'drinks-form']")
+            form.submit()
+        } else {
+            return false;
+        }
+    })
+
+</script>
+
 
 {% endblock %}
