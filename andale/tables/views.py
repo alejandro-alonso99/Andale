@@ -121,7 +121,6 @@ def tables_dashboard(request):
 
     delete_table_form = DeleteTableForm(request.POST or None)
     if delete_table_form.is_valid():
-        print('ok')
         table_number = request.POST.get('table_number')
         del request.session[user]['mesas']['numbers'][table_number]
         request.session.modified = True
@@ -131,8 +130,6 @@ def tables_dashboard(request):
     tables_dict = request.session[user]['mesas']['numbers']
     
     calculate_totals()
-
-    print(tables_dict)
 
     return render(request,'tables/tables_dashboard.html',{
                                                         'add_table_form':add_table_form,

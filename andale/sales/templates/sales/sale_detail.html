@@ -11,13 +11,13 @@
         a listado</a></p>
 
 <div id="top-forms">
-    <form method="post" onsubmit="confirm('Confirme para eliminar la venta')" id="search-form">
+    <form method="post" id="search-form">
         {% csrf_token %}
         <div id="delete-label">
             <i class="fa-solid fa-circle-xmark"></i> Eliminar:
         </div>
         {{ detroy_object_form.field.as_hidden }}
-        <input type="submit" id="delete-btn" value="Eliminar Venta">
+        <input type="button" id="delete-btn" value="Eliminar Venta">
     </form>
 </div>
 
@@ -41,5 +41,19 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    var input = document.getElementById("delete-btn")
+    input.addEventListener("click", function () {
+        if (confirm('Quiere eliminar la venta?')) {
+            document.getElementById("search-form").submit()
+        } else {
+            return false;
+        }
+    });
+
+
+</script>
 
 {% endblock %}

@@ -80,12 +80,9 @@ def product_create(request):
                                                             'product_form':product_form,
                                                         })
 @login_required
-def product_detail(request, product):
+def product_detail(request, id ):
 
-    user = request.user
-
-    product = get_object_or_404(Product, user= user, 
-                                        slug = product,)                
+    product = get_object_or_404(Product, id=id)                
 
     if request.method == 'POST':
         destroy_object_form = DestroyObjectForm(request.POST)
