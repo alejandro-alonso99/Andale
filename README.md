@@ -16,6 +16,24 @@ This webapp works for multiple users, so that every separate franchise of the co
 
 ## This project Includes:
 
+## Tables managing view:
+In this view you can "open" tables, add products to them, and then print a receipt. In this case the user opens table number 1 and adds products, then he prints the receipt and later closes the sale wich is payed in cash. This sale get's registered in the database.
+![gif](tables.gif)
+
+## Receipts:
+# This is the receipt that got printed in the last sale.
+<img src="receipt.jpeg" alt="receipt" width="400"/>
+
 ## Create views:
 Create views include forms that let you create objects. In this case this user created a product named Taco de carne.
 ![gif](create_product.gif)
+
+## List views:
+List views let you see all registered objects of a given kind, you can also for example change the price of all products of a specified category. In this case the user raises the price of all food products by a 10%.
+![gif](products_list.gif)
+
+## Detail views:
+Detail views give you information about the given object, you can also delete the object or change a product's sale price.
+![detail_view](detail_view.png)
+
+
