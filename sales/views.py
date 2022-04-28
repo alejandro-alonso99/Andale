@@ -44,12 +44,9 @@ def sales_list(request):
                                                     })
 
 @login_required
-def sale_detail(request, sale):
+def sale_detail(request, id):
 
-    user = request.user
-
-    sale = get_object_or_404(Sale, user= user, 
-                                        slug = sale,)
+    sale = get_object_or_404(Sale, id=id)
 
     if request.method == 'POST':
         destroy_object_form = DestroyObjectForm(request.POST)

@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import redirect,render
 import datetime
 from django.utils.text import slugify
+from django.contrib.auth.decorators import login_required
+from expenses.models import Expense
+from products.forms import DestroyObjectForm
+from sales.models import Sale
 
+@login_required
 def ticket(request,number):
 
     user = str(request.user)
@@ -15,7 +20,8 @@ def ticket(request,number):
                                                 'date':date,
                                                 'number':number,
                                                 })
-
+                                                
+@login_required
 def delivery_ticket(request):
 
     user = str(request.user)
@@ -39,3 +45,20 @@ def delivery_ticket(request):
                                                             'date':date,
                                                             'delivery_total':delivery_total,
                                                         })
+
+def delete_sales_and_expenses(request):
+
+    if request.method == 'POST':
+        destroy_object_form = DestroyObjectForm(request.POST)
+        user_sales = Sale.objects.filter(user=request.user)
+        user_expenses = Expense.objects.filter(user=request.user)
+
+        user_sales.delete()
+        user_expenses.delete()
+        
+        return redirect('products:products_list')
+        
+    else:
+        destroy_object_form = DestroyObjectForm()
+
+    return render(request,'account/delete_all.html',{'destroy_object_form':destroy_object_form})

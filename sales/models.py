@@ -33,7 +33,7 @@ class Sale(models.Model):
 
     def get_absolute_url(self):
         return reverse('sales:sale_detail',
-                                        args=[self.slug])
+                                        args=[self.id])
 
     class Meta:
 

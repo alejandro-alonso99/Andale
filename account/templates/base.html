@@ -52,6 +52,10 @@
             <a href="{% url 'products:product_create' %}">Crear</a>
         </div>
         <hr>
+        <a href="{% url 'account:delete_all' %}"
+            class="{% if request.resolver_match.view_name == 'account:delete_all' %} current {% endif %}">Borrar
+            datos</a>
+        <hr>
     </div>
 
     <main>

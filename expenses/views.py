@@ -64,12 +64,9 @@ def expense_create(request):
     return render(request, 'expenses/expense_create.html',{'expense_form':expense_form})
 
 @login_required
-def expense_detail(request, expense):
+def expense_detail(request, id):
 
-    user = request.user
-
-    expense = get_object_or_404(Expense, user= user, 
-                                        slug = expense)
+    expense = get_object_or_404(Expense, id=id)
 
     if request.method == 'POST':
         destroy_object_form = DestroyObjectForm(request.POST)

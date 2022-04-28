@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar datos {% endblock %}
+
+{% block content %}
+
+<div id="list-title">
+    Eliminar datos:
+</div>
+<form action="" method="post" id="del-form">
+    {% csrf_token %}
+    <div id="form-wrapper">
+        <div id="wrapper">
+            <div class="create-section">
+                <div class="create-element">
+                    <h3>Eliminar datos: Eliminar ventas y gastos registrados.</h3>
+                    {{ destroy_object_form.field.as_hidden }}
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Eliminar" id="create-btn">
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    var input = document.getElementById("create-btn")
+    input.addEventListener("click", function () {
+        if (confirm('Quiere eliminar los datos de manera permanente?')) {
+            document.getElementById("del-form").submit()
+        } else {
+            return false;
+        }
+    });
+
+</script>
+
+{% endblock %}

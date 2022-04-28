@@ -2,7 +2,9 @@ from django.shortcuts import render
 from sales.models import Sale
 from expenses.models import Expense
 import datetime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def summary_dashboard(request):
 
     user = request.user

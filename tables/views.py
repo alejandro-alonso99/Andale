@@ -5,7 +5,9 @@ from django.contrib import messages
 from delivery.forms import AddProductForm, RemoveProductForm, CloseSaleForm
 from django.utils.text import slugify
 from sales.models import Sale
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def tables_dashboard(request):
 
     user = request.user
